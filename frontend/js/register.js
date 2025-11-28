@@ -1,15 +1,5 @@
-// Get all users fetch
-/*
-document.addEventListener("DOMContentLoaded", () => {
-  fetch('http://localhost/api-getAllUsers.php')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {console.error(error)})
-});
-*/
-
-const handleLoginBtnClick = (username, password) => {
-    fetch('http://localhost/api-loginUser.php', {
+const handleRegisterBtnClick = (username, password) => {
+    fetch('http://localhost/api-registerUser.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,11 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Get all the required DOM elements
     const usernameInput = document.getElementById("usernameInput");
     const passwordInput = document.getElementById("passwordInput");
-    const loginBtn = document.getElementById("loginBtn");
+    const registerBtn = document.getElementById("registerBtn");
 
-    if (usernameInput && passwordInput && loginBtn) {
-        loginBtn.addEventListener('click', () => {
-            handleLoginBtnClick(usernameInput.value, passwordInput.value);
+    if (usernameInput && passwordInput && registerBtn) {
+        registerBtn.addEventListener('click', () => {
+            handleRegisterBtnClick(usernameInput.value, passwordInput.value);
         });
     } else {
         console.error(`loginBtn/usernameInput/passwordInput not found`);
