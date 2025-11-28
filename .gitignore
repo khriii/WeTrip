@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+.vscode/
+
+# for composers
+/backend/vendor/
+
+# security
+/backend/.env
+/backend/config.php
+
+# error logs
+/backend/error_log
+/backend/*.log
+
+# frontend if we will use react
+/frontend/node_modules/
