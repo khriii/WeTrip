@@ -11,7 +11,7 @@ Follow these steps to set up the project locally on your machine.
 Before you begin, ensure you have **Node.js** installed.
 If you don't have it yet, download and install it from the official website:
 
-* 👉 **[Download Node.js](https://nodejs.org/en)** (LTS version recommended)
+* 👉 **[Download Node.js](https://nodejs.org/en)** (Version: 24.11.1)
 
 *Note: Installing Node.js automatically includes `npm`.*
 
