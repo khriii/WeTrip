@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
-import { Navigate } from 'react-router-dom'
+import { useAuth } from './context/AuthContext'
 
 function App() {
+  const {logout } = useAuth();
+
+  const handleLogout = async () => {
+    // Call the context logout
+    await logout();
+  }
 
   return (
     <React.Fragment>
-      <Navigate to={'/login'}></Navigate>
+      <h1>
+        Main Page
+      </h1>
+
+      <button 
+        className='btn btn-error'
+        onClick={handleLogout}
+      >
+      Logout
+      </button>
     </React.Fragment>
   )
 }

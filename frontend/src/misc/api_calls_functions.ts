@@ -1,59 +1,73 @@
 import axios from 'axios';
 
+export interface User {
+  id: number;
+  username: string;
+}
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_API_URL,
   withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-
-const login = async (username: string, password: string): Promise<boolean> => {
+const login = async (username: string, password: string): Promise<User | null> => {
   try {
-    const payload = {
-      username: username,
-      password: password
-    }
-
+    const payload = { username, password };
     const response = await api.post('api-loginUser.php', payload);
-
     const data = response.data;
 
-    console.log("Server Response:", data);
-
-    if (data["status"] === "success") {
-      return true;
+    if (data.status === "success" && data.user) {
+      return data.user as User;
     }
-    console.log("Login failed:", data.message);
-    return false;
+
+    return null;
 
   } catch (error) {
-    console.log("Network or Server Error:", error);
-    return false;
+    return null;
   }
 }
 
 const register = async (username: string, password: string): Promise<boolean> => {
   try {
-    const payload = {
-      username: username,
-      password: password
-    }
-
+    const payload = { username, password };
     const response = await api.post('api-registerUser.php', payload);
-
     const data = response.data;
 
-    console.log("Server Response:", data);
-
-    if (data["status"] === "success") {
+    if (data.status === "success") {
       return true;
     }
-    console.log("Registration failed:", data.message);
+
     return false;
 
   } catch (error) {
-    console.log("Network or Server Error:", error);
     return false;
   }
 }
 
-export { login, register };
+const checkAuth = async (): Promise<User | null> => {
+  try {
+    const response = await api.get('api-checkAuth.php');
+
+    if (response.data.isAuthenticated && response.data.user) {
+      return response.data.user as User;
+    }
+
+    return null;
+  } catch (error) {
+    return null;
+  }
+}
+
+const logout = async (): Promise<boolean> => {
+  try {
+    await api.post('api-logout.php');
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export { login, register, checkAuth, logout };

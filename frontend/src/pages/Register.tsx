@@ -21,7 +21,7 @@ const Register = () => {
     const isSuccess = await register(data.username, data.password);
 
     if (isSuccess) {
-      console.log("Login succesfull")
+      console.log("Register succesfull")
     } else {
       setErrorMessage("Error");
     }

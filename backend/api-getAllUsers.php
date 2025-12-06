@@ -1,12 +1,9 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
-header("Content-Type: application/json");
+require_once 'cors.php';
 
 require_once 'database.php';
 
 try {
-
     $stmt = $conn->query('SELECT * FROM users');
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
