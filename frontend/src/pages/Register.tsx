@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CredentialsInputCard, { type CredentialsData } from "../components/CredentialsInputCard";
-import { register } from "../misc/api_calls_functions";
+import { register } from "../api/auth";
 
 const Register = () => {
 

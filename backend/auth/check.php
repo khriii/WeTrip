@@ -1,5 +1,5 @@
 <?php
-require_once 'cors.php';
+require_once '../cors.php';
 
 // Start the session to check for the user_id
 session_start();

@@ -1,22 +1,15 @@
-import axios from 'axios';
+import api from './client';
 
 export interface User {
   id: number;
   username: string;
 }
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_API_URL,
-  withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-const login = async (username: string, password: string): Promise<User | null> => {
+// Login function
+export const login = async (username: string, password: string): Promise<User | null> => {
   try {
     const payload = { username, password };
-    const response = await api.post('api-loginUser.php', payload);
+    const response = await api.post('auth/login.php', payload);
     const data = response.data;
 
     if (data.status === "success" && data.user) {
@@ -30,10 +23,11 @@ const login = async (username: string, password: string): Promise<User | null> =
   }
 }
 
-const register = async (username: string, password: string): Promise<boolean> => {
+// Register function
+export const register = async (username: string, password: string): Promise<boolean> => {
   try {
     const payload = { username, password };
-    const response = await api.post('api-registerUser.php', payload);
+    const response = await api.post('auth/register.php', payload);
     const data = response.data;
 
     if (data.status === "success") {
@@ -47,9 +41,10 @@ const register = async (username: string, password: string): Promise<boolean> =>
   }
 }
 
-const checkAuth = async (): Promise<User | null> => {
+// Check authentication status
+export const checkAuth = async (): Promise<User | null> => {
   try {
-    const response = await api.get('api-checkAuth.php');
+    const response = await api.get('auth/check.php');
 
     if (response.data.isAuthenticated && response.data.user) {
       return response.data.user as User;
@@ -61,13 +56,12 @@ const checkAuth = async (): Promise<User | null> => {
   }
 }
 
-const logout = async (): Promise<boolean> => {
+// Logout function
+export const logout = async (): Promise<boolean> => {
   try {
-    await api.post('api-logout.php');
+    await api.post('auth/logout.php');
     return true;
   } catch (error) {
     return false;
   }
 }
-
-export { login, register, checkAuth, logout };

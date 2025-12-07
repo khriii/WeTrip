@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CredentialsInputCard, { type CredentialsData } from "../components/CredentialsInputCard";
-import { login as apiLogin } from "../misc/api_calls_functions";
+import { login as apiLogin } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 

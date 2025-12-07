@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { checkAuth, logout as apiLogout } from "../misc/api_calls_functions";
+import { checkAuth, logout as apiLogout } from "../api/auth";
 
 
 interface User {
