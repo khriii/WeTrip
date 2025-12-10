@@ -19,7 +19,12 @@ function App() {
         Main Page
       </h1>
 
-      <Link to='/create-join-group'>Create or Join Group Page</Link>
+
+      <p>
+        <Link to='/create-join-group'>Create or Join Group Page</Link>
+        <br />
+        <Link to='/group-dashboard'>Group dashboard page</Link>
+      </p>
 
       <button
         className='btn btn-error'
