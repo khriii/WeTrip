@@ -1,6 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './App.css'
 import { useAuth } from './context/AuthContext'
+
+
 
 function App() {
   const {logout } = useAuth();
@@ -16,7 +19,9 @@ function App() {
         Main Page
       </h1>
 
-      <button 
+      <Link to='/create-join-group'>Create or Join Group Page</Link>
+
+      <button
         className='btn btn-error'
         onClick={handleLogout}
       >

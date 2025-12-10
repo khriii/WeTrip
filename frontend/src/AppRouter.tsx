@@ -4,6 +4,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import { useAuth } from './context/AuthContext';
 
+import CreateJoinGroup from './pages/CreateJoinGroup'
+
 const AppRouter = () => {
   const { isAuthenticated, isLoading } = useAuth();
 
@@ -30,6 +32,11 @@ const AppRouter = () => {
       <Route
         path='/register'
         element={!isAuthenticated ? <Register /> : <Navigate to='/' />}
+      />
+
+      <Route
+        path='/create-join-group'
+        element={isAuthenticated ? <CreateJoinGroup /> : <Navigate to='/login' />}
       />
     </Routes>
   );
