@@ -1,34 +1,38 @@
 import React, { useState } from "react";
 import { FaPlane, FaSearch, FaPlus } from "react-icons/fa";
+import Navbar from "../components/Navbar";
 
 const CreateJoinGroup = () => {
   const [idGroup, setIdGroup] = useState('');
 
   {/* Method to handle btn click to create a new group */ }
-  {/* TODO: manage handleCreateGroupClick() */}
+  {/* TODO: manage handleCreateGroupClick() */ }
   const handleCreateGroupClick = () => {
 
   }
 
   {/* Method to handle btn click to enter group */ }
-  {/* TODO: manage handleEnterGroupClick() */}
+  {/* TODO: manage handleEnterGroupClick() */ }
   const handleEnterGroupClick = () => {
 
   }
 
 
   return (
-    <React.Fragment>
+    <div className="h-screen flex flex-col overflow-hidden">
+
+      <Navbar />
+
       <div className="bg-base-200 min-h-screen flex items-center justify-center">
         <div className="flex justify-center p-10">
 
 
           {/* Container */}
-          <div className="flex-col flex items-center justify-center gap-3 w-100 lg:w-120">
+          <div className="flex-col flex items-center justify-center gap-3 w-100 lg:w-120 -mt-24">
 
             {/* Plane icon */}
             <div className="bg-blue-500 p-3 rounded-xl">
-              <FaPlane className="rotate-315 ml-1 my-0.5"
+              <FaPlane className="rotate-315 ml-1 my-0.5 text-white"
                 size={50}
               />
             </div>
@@ -81,7 +85,7 @@ const CreateJoinGroup = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 }
 

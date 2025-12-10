@@ -1,43 +1,68 @@
-import { FaPlane } from "react-icons/fa";
+import { FaMoon, FaPlane, FaSun } from "react-icons/fa";
+import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">
-          {
-            <FaPlane className="rotate-315 ml-1 my-0.5"
-              size={30}
-            />
-          }
+          <FaPlane className="rotate-315 ml-1 my-0.5" size={30} />
           WeTrip
         </a>
       </div>
       <div className="flex gap-2">
-        <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+        <label className="swap swap-rotate">
+          <input
+            type="checkbox"
+            className="theme-controller"
+            onChange={toggleTheme}
+            checked={theme === "dark"}
+          />
+          <FaSun
+            className="swap-off h-6 w-6 fill-current"
+          />
+          <FaMoon
+            className="swap-on h-6 w-6 fill-current"
+          />
+        </label>
+        <input
+          type="text"
+          placeholder="Search"
+          className="input input-bordered w-24 md:w-auto"
+        />
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
             <div className="w-10 rounded-full">
               <img
                 alt="Profile Image"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+              />
             </div>
           </div>
-          <ul
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+          <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
             <li>
               <a className="justify-between">
                 Profile
                 <span className="badge">New</span>
               </a>
             </li>
-            <li><a>Settings</a></li>
-            <li><a>Logout</a></li>
+            <li>
+              <a>Settings</a>
+            </li>
+            <li>
+              <a>Logout</a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;
