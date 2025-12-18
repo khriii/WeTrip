@@ -6,7 +6,7 @@ import { useAuth } from './context/AuthContext'
 
 
 function App() {
-  const {logout } = useAuth();
+  const { logout } = useAuth();
 
   const handleLogout = async () => {
     // Call the context logout
@@ -30,7 +30,7 @@ function App() {
         className='btn btn-error'
         onClick={handleLogout}
       >
-      Logout
+        Logout
       </button>
     </React.Fragment>
   )
