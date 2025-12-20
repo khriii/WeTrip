@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
 
     return (
-        <div className="flex flex-col gap-2">
+        <div className={`flex flex-col gap-2 ${className}`}>
             {
                 label && (
                     <label className="text-md">
@@ -28,7 +28,7 @@ const Input: React.FC<InputProps> = ({
                 )
             }
 
-            <label className={`input w-full flex items-center gap-2 ${className}`}>
+            <label className="input w-full flex items-center gap-2">
                 {icon}
                 <input
                     type={type}

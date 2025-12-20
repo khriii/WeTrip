@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { FaPlane, FaSearch, FaPlus } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 
+import Button from "../components/Button"
+import Input from "../components/Input";
+import Row from "../components/Row";
+import Card from "../components/Card";
+import Column from "../components/Column";
+
 const CreateJoinGroup = () => {
   const [idGroup, setIdGroup] = useState('');
 
@@ -19,73 +25,84 @@ const CreateJoinGroup = () => {
 
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
+    <React.Fragment>
 
       <Navbar />
 
       <div className="bg-base-200 min-h-screen flex items-center justify-center">
-        <div className="flex justify-center p-10">
 
+        {/* Container */}
+        <Column className="justify-center xs:min-w-200 -mt-24">
 
-          {/* Container */}
-          <div className="flex-col flex items-center justify-center gap-3 w-100 lg:w-120 -mt-24">
+          {/* Plane icon */}
 
-            {/* Plane icon */}
-            <div className="bg-blue-500 p-3 rounded-xl">
-              <FaPlane className="rotate-315 ml-1 my-0.5 text-white"
-                size={50}
-              />
-            </div>
+          <Row className="bg-blue-500 p-3 rounded-xl mb-5">
+            <FaPlane className="rotate-315 ml-1 my-0.5 mr-6 text-white"
+              size={50}
+            />
 
             {/* Title and phrase */}
-            <h1 className="text-xl font-bold">WeTrip</h1>
-            <h2 className="text-md">Pianifica ora il tuo viaggio!</h2>
+            <Column className="flex justify-center items-center">
+              <h1 className="text-xl font-bold text-white">WeTrip</h1>
+              <h2 className="text-md text-white">Pianifica ora il tuo viaggio!</h2>
+            </Column>
 
-            {/* Container Input */}
-            <div className="bg-base-300 p-7 rounded-xl flex-col flex items-center justify-center gap-5 mt-5 w-full">
+          </Row>
+
+          {/* Container Input */}
+          <Card>
+
+            <Column className="gap-3">
 
               {/* Button to create a new group */}
-              <button
-                className="w-full btn btn-primary"
-                onClick={handleCreateGroupClick}
-              >
-                Crea un nuovo gruppo {<FaPlus />}
-              </button>
+              <Button
+                className="w-full py-7"
+                variant="primary"
+                text="Crea un nuovo gruppo"
+                iconPosition="right"
+                icon={<FaPlus />}
+                handleClick={handleCreateGroupClick}
+              />
+
+
 
               {/* span "or" */}
-              <span className="text-sm font-semibold font-thin">oppure</span>
+              <span className="text-sm font-semibold font-thin flex justify-center">oppure</span>
 
               {/* Container */}
-              <div className="flex items-center w-full gap-2">
+              <Row className="gap-2 w-full">
 
                 {/* ID Group input + Enter button */}
-                <label className="input input-bordered flex items-center gap-2 grow">
-                  <FaSearch className="opacity-70" />
-                  <input
-                    onChange={(e) => {
-                      setIdGroup(e.target.value);
-                    }}
-                    type="text"
-                    className="grow"
-                    placeholder="ID gruppo"
-                  />
-                </label>
+
+                <Input
+                  label=""
+                  type="text"
+                  placeholder="ID (Group)"
+                  icon={<FaSearch />}
+                  className="w-full"
+                  onChange={(value) => {
+                    setIdGroup(value);
+                  }}
+                />
 
                 {/* Enter group button */}
-                <button
-                  className="btn btn-primary"
-                  onClick={handleEnterGroupClick}
-                >
-                  Entra
-                </button>
+                <Button
+                  text="Entra"
+                  variant="primary"
+                  handleClick={handleEnterGroupClick}
+                />
 
-              </div>
+              </Row>
 
-            </div>
-          </div>
-        </div>
+            </Column>
+
+          </Card>
+
+        </Column>
+
       </div>
-    </div>
+
+    </React.Fragment>
   );
 }
 
