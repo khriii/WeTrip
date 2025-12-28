@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPlane, FaSearch, FaPlus } from "react-icons/fa";
 import Navbar from "../components/Navbar";
+import { create as apiCreateGroup } from "../api/group";
 
 import Button from "../components/Button"
 import Input from "../components/Input";
@@ -13,8 +14,9 @@ const CreateJoinGroup = () => {
 
   {/* Method to handle btn click to create a new group */ }
   {/* TODO: manage handleCreateGroupClick() */ }
-  const handleCreateGroupClick = () => {
-
+  const handleCreateGroupClick = async () => {
+    const response = await apiCreateGroup("GroupName", "admin", "leader");
+    console.log(response);
   }
 
   {/* Method to handle btn click to enter group */ }
