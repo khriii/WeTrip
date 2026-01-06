@@ -1,25 +1,47 @@
 import api from './client';
+import { isAxiosError } from 'axios';
 
 export interface User {
   id: number;
   username: string;
 }
 
+export interface LoginResponse {
+  success: boolean;
+  user?: User;
+  error?: string;
+}
+
 // Login function
-export const login = async (username: string, password: string): Promise<User | null> => {
+export const login = async (username: string, password: string): Promise<LoginResponse> => {
   try {
     const payload = { username, password };
     const response = await api.post('auth/login.php', payload);
     const data = response.data;
 
     if (data.status === "success" && data.user) {
-      return data.user as User;
+      return { 
+        success: true, 
+        user: data.user as User 
+      };
     }
 
-    return null;
+    return { 
+      success: false, 
+      error: data.message || "Credenziali non valide" 
+    };
 
   } catch (error) {
-    return null;
+    let errorMessage = "Errore di connessione al server";
+    
+    if (isAxiosError(error) && error.response?.data?.message) {
+      errorMessage = error.response.data.message;
+    }
+
+    return { 
+      success: false, 
+      error: errorMessage 
+    };
   }
 }
 

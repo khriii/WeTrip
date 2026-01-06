@@ -12,4 +12,3 @@ try {
 } catch (PDOException $e) {
     echo json_encode(["error" => "Connection failed: " . $e->getMessage()]);
 }
-?>

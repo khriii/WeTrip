@@ -9,29 +9,29 @@ const Login = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleLogin = async (data: CredentialsData) => {
-    setErrorMessage(null);
+ const handleLogin = async (data: CredentialsData) => {
+  setErrorMessage(null);
 
-    if (!data.username || !data.password) {
-      setErrorMessage("Inserisci username e password");
-      return;
+  if (!data.username || !data.password) {
+    setErrorMessage("Inserisci username e password");
+    return;
+  }
+
+  try {
+    const response = await apiLogin(data.username, data.password);
+
+    if (response.success && response.user) {
+      login(response.user);
+      navigate('/', { replace: true });
+    } else {
+      setErrorMessage(response.error || "Username o password errati.");
     }
 
-    try {
-      const userResult = await apiLogin(data.username, data.password);
-
-      if (userResult) {
-        login(userResult);
-        navigate('/', { replace: true });
-      } else {
-        setErrorMessage("Username o password errati.");
-      }
-
-    } catch (error) {
-      console.error(error);
-      setErrorMessage("Errore di connessione al server.");
-    }
-  };
+  } catch (error) {
+    console.error(error);
+    setErrorMessage("Errore di connessione al server.");
+  }
+};
 
   return (
     <div className="bg-base-200 min-h-screen flex items-center justify-center">
