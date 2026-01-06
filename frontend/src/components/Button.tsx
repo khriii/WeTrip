@@ -6,12 +6,12 @@ const variantClasses: Record<string, string> = {
 };
 
 interface ButtonProps {
-    text: string;
+    text?: string;
     variant?: string;
     className?: string;
     icon?: React.ReactNode;
     iconPosition?: "left" | "right";
-    handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button: React.FC<ButtonProps> = ({

@@ -4,7 +4,7 @@ interface InputProps {
     value?: string;
     placeholder?: string;
     icon?: React.ReactNode;
-    onChange: (value: string) => void;
+    onChange?: (value: string) => void;
     className?: string;
 }
 
@@ -35,7 +35,11 @@ const Input: React.FC<InputProps> = ({
                     value={value}
                     placeholder={placeholder}
                     className={className}
-                    onChange={(e) => { onChange(e.target.value) }}
+                    onChange={(e) => {
+                      if (onChange != null) {
+                        onChange(e.target.value)
+                      }
+                    }}
                 />
             </label>
 
