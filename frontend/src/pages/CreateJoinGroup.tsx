@@ -10,7 +10,7 @@ import Card from "../components/Card";
 import Column from "../components/Column";
 
 const CreateJoinGroup = () => {
-  const [idGroup, setIdGroup] = useState('');
+  const [_idGroup, setIdGroup] = useState('');
 
   {/* Method to handle btn click to create a new group */ }
   {/* TODO: manage handleCreateGroupClick() */ }
