@@ -1,8 +1,14 @@
 import { FaMoon, FaPlane, FaSun } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
+  const { logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+
+  const handleLogout = async () => {
+    await logout();
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -27,11 +33,6 @@ const Navbar = () => {
             className="swap-on h-6 w-6 fill-current"
           />
         </label>
-        <input
-          type="text"
-          placeholder="Search"
-          className="input input-bordered w-24 md:w-auto"
-        />
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -49,14 +50,19 @@ const Navbar = () => {
             <li>
               <a className="justify-between">
                 Profile
-                <span className="badge">New</span>
+                {/* <span className="badge">New</span> */}
               </a>
             </li>
             <li>
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <a
+                href="#"
+                onClick={handleLogout}
+              >
+                Logout
+              </a>
             </li>
           </ul>
         </div>
