@@ -8,35 +8,42 @@ try {
 
     $conn->beginTransaction();
 
-    $stmt = $conn->prepare('INSERT INTO groups (name) VALUES (:name)');
-    $stmt->execute([
-        'name' => $data['name']
-    ]);
-
-    $groupId = $conn->lastInsertId();
+    $groupId = $data['group_id'];
 
     if (!$groupId) {
         throw new Exception("Failed to retrieve group ID");
     }
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = :username");
-    $stmt->execute(["username" => $data["username"]]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!isset($data['username'])) {
+        throw new Exception("Username missing");
+    }
 
-    if (!$user) {
+    $stmt = $conn->prepare(
+        "SELECT id FROM users WHERE username = :username LIMIT 1"
+    );
+
+    $stmt->execute([
+        'username' => $data['username']
+    ]);
+
+    $user_id = $stmt->fetchColumn();
+
+    if ($user_id === false) {
         throw new Exception("User not found");
     }
 
     $stmt = $conn->prepare('INSERT INTO users_groups (id_user, id_group, role) VALUES (:id_user, :id_group, :role)');
+
     $stmt->execute([
-        'id_user' => $user['id'],
+        'id_user' => $user_id,
         'id_group' => $groupId,
         'role' => $data['role']
     ]);
 
+
     $conn->commit();
 
-    echo json_encode(["status" => "success", "id_group" => $group_id]);
+    echo json_encode(["status" => "success"]);
 
 } catch (Exception $e) {
     if ($conn->inTransaction()) {
