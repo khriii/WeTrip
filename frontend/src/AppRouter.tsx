@@ -1,12 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import App from './App';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { useAuth } from './context/AuthContext';
 
 import CreateJoinGroup from './pages/CreateJoinGroup'
 import GroupDashboard from './pages/GroupDashboard';
-import CreateGroup from './pages/CreateGroup';
 import LandingPage from './pages/LandingPage';
 
 const AppRouter = () => {
@@ -45,11 +43,6 @@ const AppRouter = () => {
       <Route
         path='/group-dashboard'
         element={isAuthenticated ? <GroupDashboard /> : <Navigate to='/login' />}
-      />
-
-      <Route
-        path='/create-group'
-        element={isAuthenticated ? <CreateGroup /> : <Navigate to='/login' />}
       />
 
       <Route

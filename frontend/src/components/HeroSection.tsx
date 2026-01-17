@@ -2,10 +2,27 @@ import Button from "./Button";
 import { ChevronDown, Search, UsersRound } from "lucide-react";
 import Input from "./Input";
 import Row from "./Row";
+import { useState } from "react";
+import CreateGroupModal from "./CreateGroupModal";
 
 const HeroSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center text-center gap-2 mt-36">
+
+      {/* TODO: if not logged in redirect to login */}
+      {/* Modal Create Group */}
+      {
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-opacity duration-300 backdrop-blur-sm ${isModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        >
+          <CreateGroupModal
+            className={`w-md z-60 transition-transform duration-300 ease-out ${isModalOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"}`}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </div>
+      }
 
       {/* Title */}
       <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight">
@@ -33,7 +50,12 @@ const HeroSection = () => {
         </Button>
       </Row>
 
-      <Button className="m-6" variant="primary" icon={<UsersRound size={18} strokeWidth={3} />}>
+      <Button className="m-6" variant="primary"
+        handleClick={() => {
+          setIsModalOpen(true);
+        }}
+        icon={<UsersRound size={18} strokeWidth={3} />}
+      >
         Crea un Gruppo
       </Button>
 
@@ -46,7 +68,7 @@ const HeroSection = () => {
           }
         }} />
       </div>
-    </div>
+    </div >
   );
 };
 
