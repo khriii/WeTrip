@@ -7,6 +7,7 @@ import { useAuth } from './context/AuthContext';
 import CreateJoinGroup from './pages/CreateJoinGroup'
 import GroupDashboard from './pages/GroupDashboard';
 import CreateGroup from './pages/CreateGroup';
+import LandingPage from './pages/LandingPage';
 
 const AppRouter = () => {
   const { isAuthenticated, isLoading } = useAuth();
@@ -23,7 +24,7 @@ const AppRouter = () => {
     <Routes>
       <Route
         path='/'
-        element={isAuthenticated ? <App /> : <Navigate to='/login' />}
+        element={<LandingPage />}
       />
 
       <Route
@@ -49,6 +50,11 @@ const AppRouter = () => {
       <Route
         path='/create-group'
         element={isAuthenticated ? <CreateGroup /> : <Navigate to='/login' />}
+      />
+
+      <Route
+        path='/landing-page'
+        element={<LandingPage />}
       />
     </Routes>
   );

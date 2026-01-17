@@ -3,62 +3,82 @@ import CredentialsCard, { type CredentialsData } from "../components/Credentials
 import { login as apiLogin } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Row from "../components/Row";
+import Column from "../components/Column";
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
- const handleLogin = async (data: CredentialsData) => {
-  setErrorMessage(null);
+  const handleLogin = async (data: CredentialsData) => {
+    setErrorMessage(null);
 
-  if (!data.username || !data.password) {
-    setErrorMessage("Inserisci username e password");
-    return;
-  }
-
-  try {
-    const response = await apiLogin(data.username, data.password);
-
-    if (response.success && response.user) {
-      login(response.user);
-      navigate('/', { replace: true });
-    } else {
-      setErrorMessage(response.error || "Username o password errati.");
+    if (!data.username || !data.password) {
+      setErrorMessage("Inserisci username e password");
+      return;
     }
 
-  } catch (error) {
-    console.error(error);
-    setErrorMessage("Errore di connessione al server.");
-  }
-};
+    try {
+      const response = await apiLogin(data.username, data.password);
+
+      if (response.success && response.user) {
+        login(response.user);
+        navigate('/', { replace: true });
+      } else {
+        setErrorMessage(response.error || "Username o password errati.");
+      }
+
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("Errore di connessione al server.");
+    }
+  };
 
   return (
-    <div className="bg-base-200 min-h-screen flex items-center justify-center">
-      <div className="flex flex-col gap-5 min-w-md">
+    <Row className=" min-h-screen bg-slate-950">
 
-        <CredentialsCard
-          btnConfirmLabel='Login'
-          suggestionText="or"
-          suggestionTextUnderlined="register here"
-          suggestionRoute="/register"
-          onBtnConfirmClick={handleLogin}
+      {/* Left Side - Login Form */}
+      <Column center className=" w-1/2 p-8 relative z-10">
+        {/* Background */}
+        <div className="pointer-events-none absolute top-[-5%] left-[-5%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[100px]" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px]" />
+
+
+        <Column className=" w-full max-w-[450px] gap-6">
+          <div className="text-center mb-4">
+            <h1 className="text-4xl font-bold text-white mb-2">Bentornato</h1>
+            <p className="text-gray-400">Inserisci le tue credenziali per accedere</p>
+          </div>
+
+          <CredentialsCard
+            btnConfirmLabel='Accedi'
+            suggestionText="Non hai un account?"
+            suggestionTextUnderlined="Registrati qui"
+            suggestionRoute="/register"
+            onBtnConfirmClick={handleLogin}
+          />
+
+          {errorMessage && (
+            <div role="alert" className="alert alert-error bg-red-500/10 border-red-500/20 text-red-500 rounded-xl flex items-center gap-3 p-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{errorMessage}</span>
+            </div>
+          )}
+        </Column>
+      </Column>
+
+      {/* Right Side - Image */}
+      <div className="w-1/2 relative hidden lg:block">
+        <img
+          src="background_login_light.jpg"
+          alt="Login Background"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-
-        <div className="">
-          {
-            errorMessage && (
-              <div role="alert" className="alert alert-error">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>{errorMessage}</span>
-              </div>
-            )}
-        </div>
-
       </div>
-    </div>
+    </Row>
   );
 }
 

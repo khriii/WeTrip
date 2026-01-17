@@ -1,73 +1,61 @@
-import { FaMoon, FaPlane, FaSun } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from '../context/AuthContext';
+import Button from "./Button";
+import { LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import LogoTitle from "./LogoTitle";
 
 const Navbar = () => {
-  const { logout } = useAuth();
+  const { logout, isAuthenticated } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await logout();
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar fixed top-0 w-full z-50 backdrop-blur-md bg-gradient-to-b from-slate-950 to-transparent border-b border-white/10">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">
-          <FaPlane className="rotate-315 ml-1 my-0.5" size={30} />
-          WeTrip
-        </a>
+        <Button variant="ghost">
+          <LogoTitle />
+        </Button>
       </div>
-      <div className="flex gap-2">
-        <label className="swap swap-rotate">
+
+      <div className="flex gap-4 items-center px-2">
+        {/* Theme Toggle */}
+        <label className="swap swap-rotate btn btn-ghost btn-circle hover:bg-white/10 text-white">
           <input
             type="checkbox"
             className="theme-controller"
             onChange={toggleTheme}
             checked={theme === "dark"}
           />
-          <FaSun
-            className="swap-off h-6 w-6 fill-current"
-          />
-          <FaMoon
-            className="swap-on h-6 w-6 fill-current"
-          />
+          <FaSun className="swap-off h-5 w-5 fill-current" />
+          <FaMoon className="swap-on h-5 w-5 fill-current" />
         </label>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Profile Image"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-            </div>
+
+        {isAuthenticated ? (
+          <Button
+            variant="red"
+            handleClick={handleLogout}
+            icon={<LogOut size={20} strokeWidth={2.5} />}
+          />
+
+        ) : (
+          <div className="flex items-center gap-4">
+            <Button variant="secondary" handleClick={() => navigate("/login")}>
+              Accedi
+            </Button>
+            <Button variant="primary" handleClick={() => navigate("/register")}>
+              Registrati
+            </Button>
           </div>
-          <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li>
-              <a className="justify-between">
-                Profile
-                {/* <span className="badge">New</span> */}
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a
-                href="#"
-                onClick={handleLogout}
-              >
-                Logout
-              </a>
-            </li>
-          </ul>
-        </div>
+        )}
       </div>
-    </div>
+    </div >
   );
 };
 
