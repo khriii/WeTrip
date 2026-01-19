@@ -1,5 +1,4 @@
 import { FaMoon, FaSun } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from '../context/AuthContext';
 import Button from "./Button";

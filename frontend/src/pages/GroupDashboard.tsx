@@ -8,9 +8,13 @@ const GroupDashboard = () => {
 
       <Navbar />
 
-      <div className="bg-base-200 min-h-screen flex items-center justify-center">
+      <div className="relative w-full min-h-screen overflow-x-hidden bg-slate-950">
 
-        This is a test
+        <div className="mt-40">
+          
+            
+        </div>
+
 
       </div>
 
