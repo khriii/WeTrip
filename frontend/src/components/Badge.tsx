@@ -16,14 +16,14 @@ const Badge: React.FC<BadgeProps> = ({
 
   const variants = {
     blue: "bg-blue-900/20 border-blue-700 text-blue-500",
-    green: "bg-green-900/20 border-green-700",
-    red: "bg-red-900/20 border-red-700",
-    yellow: "bg-yellow-900/20 border-yellow-700",
-    orange: "bg-orange-900/20 border-orange-700",
-    purple: "bg-purple-900/20 border-purple-700",
-    pink: "bg-pink-900/20 border-pink-700",
-    gray: "bg-gray-900/20 border-gray-700",
-    black: "bg-black/20 border-black",
+    green: "bg-green-900/20 border-green-700 text-green-500",
+    red: "bg-red-900/20 border-red-700 text-red-500",
+    yellow: "bg-yellow-900/20 border-yellow-700 text-yellow-500",
+    orange: "bg-orange-900/20 border-orange-700 text-orange-500",
+    purple: "bg-purple-900/20 border-purple-700 text-purple-500",
+    pink: "bg-pink-900/20 border-pink-700 text-pink-500",
+    gray: "bg-gray-900/20 border-gray-700 text-gray-500",
+    black: "bg-black/20 border-black text-black-500",
   };
 
   return (
