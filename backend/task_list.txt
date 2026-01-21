@@ -24,3 +24,13 @@ STOPS
 add-stop (name, price, description, id_group, id_city) TODO: return stop_id
 remove-stop (id)
 get-all-stops-from-city (id_city)
+
+
+
+
+
+robe da aggiungere:
+-gestione voli/altri mezzi
+-gestione ordinamento città (solo admin)
+-aggiungere campo order dentro a cities
+-durata permanenza in ogni citta e durata totale viaggio
