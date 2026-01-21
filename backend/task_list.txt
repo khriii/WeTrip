@@ -1,12 +1,11 @@
 GROUP
 add-user (username)
-create-group (name, creator_username) TODO:fix ruolo in auto e return id_group
+create-group (name, creator_username)
 remove-user (username, id_group)
-retrieve-group-id (group_name) TODO:da togliere
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 remove-group (id)
 rename-group (id, new_name)
-retrieve-id-group (id)
+get-id-group (id)
 promote-user (id_user, id_group) (anche più di uno)
 demote-user (id_user, id_group)
 get-all-users-from-group (id_group) (ritornare tutta la tabella users_group)
@@ -16,12 +15,12 @@ CITY
 add-city (name, price, id_group)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 remove-city (id)
-retrieve-id (name, id_group)
+get-id (name, id_group)
 change-price (id, id_group, new_price)
-retrieve-all-city-from-group (id_group)
+get-all-city-from-group (id_group)
 
 
 STOPS
 add-stop (name, price, description, id_group, id_city) TODO: return stop_id
 remove-stop (id)
-retrieve-all-stops-from-city (id_city)
+get-all-stops-from-city (id_city)
