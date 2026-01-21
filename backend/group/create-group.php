@@ -52,7 +52,7 @@ try {
     $stmt->execute([
         'id_user' => $user['id'],
         'id_group' => $groupId,
-        'role' => $data['role']
+        'role' => 'admin'
     ]);
 
     // Conferma tutte le operazioni sul database
