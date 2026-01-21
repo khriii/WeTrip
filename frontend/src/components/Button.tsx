@@ -6,6 +6,7 @@ interface ButtonProps {
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
   variant?: "primary" | "secondary" | "outline" | "ghost" | "invisible" | "red" | "white";
+  justify?: "start" | "center" | "end" | "between";
   handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -17,10 +18,18 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   iconPosition = "left",
   variant = "primary",
+  justify = "center",
   handleClick,
 }) => {
   const baseLayout =
-    "font-semibold px-6 py-3 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
+    "font-semibold px-6 py-3 transition-all duration-300 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
+
+  const justifyClass = {
+    start: "justify-start",
+    center: "justify-center",
+    end: "justify-end",
+    between: "justify-between",
+  }[justify];
 
   const variants = {
     primary:
@@ -42,7 +51,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={handleClick}
-      className={`${baseLayout} ${variants[variant]} ${className}`}
+      className={`${baseLayout} ${justifyClass} ${variants[variant]} ${className}`}
       style={{
         borderRadius: `${roundness}px`,
         fontSize: `${textSize}px`
