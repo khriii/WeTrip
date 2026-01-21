@@ -2,13 +2,14 @@ GROUP
 add-user (username)
 create-group (name, creator_username)
 remove-user (username, id_group)
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 remove-group (id)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 rename-group (id, new_name)
 get-id-group (id)
 promote-user (id_user, id_group) (anche più di uno)
 demote-user (id_user, id_group)
 get-all-users-from-group (id_group) (ritornare tutta la tabella users_group)
+get-all-groups-from-user (id_group)
 
 
 CITY
@@ -24,13 +25,3 @@ STOPS
 add-stop (name, price, description, id_group, id_city) TODO: return stop_id
 remove-stop (id)
 get-all-stops-from-city (id_city)
-
-
-
-
-
-robe da aggiungere:
--gestione voli/altri mezzi
--gestione ordinamento città (solo admin)
--aggiungere campo order dentro a cities
--durata permanenza in ogni citta e durata totale viaggio
