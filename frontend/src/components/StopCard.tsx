@@ -31,9 +31,12 @@ const StopCard: React.FC<StopCardProps> = ({
 
       {/* Top Right Badge */}
       <div className="absolute top-0 right-0 p-6 z-20 transition-transform duration-300 group-hover:-translate-y-2">
-        <Badge variant="green" className="backdrop-blur-md shadow-lg">
+        <div className="bg-green-700 rounded-full">
+          <Badge variant="green" className="shadow-lg text-white">
           € {price}
         </Badge>
+        </div>
+        
       </div>
 
       {/* Content */}
