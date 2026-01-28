@@ -1,11 +1,11 @@
-import Navbar from "../components/Navbar";
-import StopCard from "../components/StopCard";
-import StopContainer from "../components/StopsContainer";
-import CitiesCard from "../components/CitiesCard";
-import City from "../components/City";
+import Navbar from "../../components/Navbar";
+import StopCard from "../../components/StopCard";
+import StopContainer from "../../components/StopsContainer";
+import CitiesCard from "../../components/CitiesCard";
+import City from "../../components/City";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import CreateStopModal from "../components/Modals/CreateStopModal";
+import CreateStopModal from "../../components/Modals/CreateStopModal";
 
 const GroupDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

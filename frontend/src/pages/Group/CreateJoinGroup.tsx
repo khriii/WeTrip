@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { FaPlane, FaSearch, FaPlus } from "react-icons/fa";
-import Navbar from "../components/Navbar";
-import { create as apiCreateGroup } from "../api/group";
+import Navbar from "../../components/Navbar";
+import { create as apiCreateGroup } from "../../api/group";
 
-import Button from "../components/Button"
-import Input from "../components/Input";
-import Row from "../components/Row";
-import Card from "../components/Card";
-import Column from "../components/Column";
+import Button from "../../components/Button"
+import Input from "../../components/Input";
+import Row from "../../components/Row";
+import Card from "../../components/Card";
+import Column from "../../components/Column";
 
 const CreateJoinGroup = () => {
   const [_idGroup, setIdGroup] = useState('');
@@ -60,11 +60,13 @@ const CreateJoinGroup = () => {
               <Button
                 className="w-full py-7"
                 variant="primary"
-                text="Crea un nuovo gruppo"
+
                 iconPosition="right"
                 icon={<FaPlus />}
                 handleClick={handleCreateGroupClick}
-              />
+              >
+                Crea un Nuovo Gruppo
+              </Button>
 
 
 
@@ -89,10 +91,11 @@ const CreateJoinGroup = () => {
 
                 {/* Enter group button */}
                 <Button
-                  text="Entra"
                   variant="primary"
                   handleClick={handleEnterGroupClick}
-                />
+                >
+                  Entra
+                </Button>
 
               </Row>
 

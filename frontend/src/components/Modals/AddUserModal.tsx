@@ -6,7 +6,6 @@ import { useState } from "react";
 import Button from "../Button";
 import Input from "../Input";
 import Row from "../Row";
-import Card from "../Card";
 
 interface Props {
     onClose: () => void;
