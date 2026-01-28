@@ -3,8 +3,13 @@ import StopCard from "../components/StopCard";
 import StopContainer from "../components/StopsContainer";
 import CitiesCard from "../components/CitiesCard";
 import City from "../components/City";
+import { Plus } from "lucide-react";
+import { useState } from "react";
+import CreateStopModal from "../components/Modals/CreateStopModal";
 
 const GroupDashboard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
 
     <div className="relative w-full min-h-screen overflow-x-hidden bg-slate-950">
@@ -70,6 +75,32 @@ const GroupDashboard = () => {
             </StopContainer>
 
           </div>
+
+          <div className="fixed bottom-10 right-10">
+            <button
+              className="rounded-full w-16 h-16 justify-center font-semibold flex justify-center items-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-gradient-to-r from-green-500 to-green-700 hover:from-green-400 hover:to-green-500 text-white hover:shadow-lg hover:shadow-green-500/25"
+
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              <Plus strokeWidth={3} />
+            </button>
+          </div>
+
+          {/* Modal Create Stop */}
+
+          <div
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-opacity duration-300 backdrop-blur-sm ${isModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          >
+            <CreateStopModal
+              className={`w-md z-60 transition-transform duration-300 ease-out ${isModalOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"}`}
+              onClose={() => setIsModalOpen(false)}
+            />
+          </div>
+
+
+
         </div>
 
       </div>

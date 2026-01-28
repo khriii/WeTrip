@@ -13,16 +13,16 @@ const HeroSection = () => {
 
       {/* TODO: if not logged in redirect to login */}
       {/* Modal Create Group */}
-      {
-        <div
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-opacity duration-300 backdrop-blur-sm ${isModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-        >
-          <CreateGroupModal
-            className={`w-md z-60 transition-transform duration-300 ease-out ${isModalOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"}`}
-            onClose={() => setIsModalOpen(false)}
-          />
-        </div>
-      }
+
+      <div
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 transition-opacity duration-300 backdrop-blur-sm ${isModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      >
+        <CreateGroupModal
+          className={`w-md z-60 transition-transform duration-300 ease-out ${isModalOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"}`}
+          onClose={() => setIsModalOpen(false)}
+        />
+      </div>
+
 
       {/* Title */}
       <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight">

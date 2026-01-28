@@ -1,14 +1,22 @@
-import { FaMoon, FaSun } from "react-icons/fa";
-import { useTheme } from "../context/ThemeContext";
 import { useAuth } from '../context/AuthContext';
 import Button from "./Button";
-import { LogOut } from "lucide-react";
+import { LogOut, UserRoundPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LogoTitle from "./LogoTitle";
+import { useState } from "react";
+import ModalPortal from './Modals/ModalPortal';
+import AddUserModal from './Modals/AddUserModal';
 
 const Navbar = () => {
+  {/* TODO: Fix the group id and isInGroup */ }
+  {/* I put these 2 useStates here so I can TEMPORARILY set the group */ }
+  {/* It Should be managed better in the future */ }
+  const [isInGroup, setIsInGroup] = useState(true);
+  const [idGroup, setIdGroup] = useState("1");
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { logout, isAuthenticated } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -24,17 +32,29 @@ const Navbar = () => {
       </div>
 
       <div className="flex gap-4 items-center px-2">
-        {/* Theme Toggle */}
-        <label className="swap swap-rotate btn btn-ghost btn-circle hover:bg-white/10 text-white">
-          <input
-            type="checkbox"
-            className="theme-controller"
-            onChange={toggleTheme}
-            checked={theme === "dark"}
-          />
-          <FaSun className="swap-off h-5 w-5 fill-current" />
-          <FaMoon className="swap-on h-5 w-5 fill-current" />
-        </label>
+
+
+        <Button
+          handleClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
+          <UserRoundPlus strokeWidth={3} />
+        </Button>
+
+        {isModalOpen && (
+          <ModalPortal>
+            <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+              <AddUserModal
+                className={`w-md z-60 transition-transform duration-300 ease-out ${isModalOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"}`}
+                onClose={() => setIsModalOpen(false)}
+              />
+            </div>
+          </ModalPortal>
+        )}
+
+
+
 
         {isAuthenticated ? (
           <Button
