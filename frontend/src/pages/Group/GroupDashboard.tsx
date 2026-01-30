@@ -10,8 +10,6 @@ import { useParams, useLocation } from "react-router-dom";
 
 interface GroupState {
   groupName: string;
-  groupDescription: string;
-  groupMembers: string[];
 }
 
 const GroupDashboard = () => {
@@ -20,8 +18,8 @@ const GroupDashboard = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-const {
-    groupName = "Default Group", 
+  const {
+    groupName = "Default Group",
   } = state || {};
 
 
