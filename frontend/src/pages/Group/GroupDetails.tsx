@@ -5,8 +5,6 @@ import { useParams, useLocation } from "react-router-dom";
 
 interface GroupState {
   groupName: string;
-  groupDescription: string;
-  groupMembers: string[];
 }
 
 const GroupDetails: React.FC = () => {

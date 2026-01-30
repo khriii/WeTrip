@@ -42,7 +42,7 @@ const AppRouter = () => {
       />
 
       <Route
-        path='/group-dashboard'
+        path='/group-dashboard/:groupId'
         element={isAuthenticated ? <GroupDashboard /> : <Navigate to='/login' />}
       />
 

@@ -6,9 +6,24 @@ import City from "../../components/City";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import CreateStopModal from "../../components/Modals/CreateStopModal";
+import { useParams, useLocation } from "react-router-dom";
+
+interface GroupState {
+  groupName: string;
+  groupDescription: string;
+  groupMembers: string[];
+}
 
 const GroupDashboard = () => {
+  const { groupId } = useParams();
+  const { state } = useLocation() as { state: GroupState };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+const {
+    groupName = "Default Group", 
+  } = state || {};
+
 
   return (
 

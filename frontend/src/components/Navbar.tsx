@@ -34,6 +34,26 @@ const Navbar = () => {
             <div className="flex gap-4 items-center px-2">
 
 
+                <div className="flex justify-center items-center">
+                    {/* TODO: Change this text */}
+                    <Button variant="secondary"
+                      handleClick={() => {
+                        navigate(`/group-dashboard/${idGroup}`, {
+                          state: {
+                            groupName: 'Study Group',
+                          },
+              })}}
+                    >
+                      <div className="flex flex-col items-center justify-center">
+            
+                        <span className="text-md">NomeGruppo</span>
+                        <span className="text-xs">Membri: 10</span>
+                          
+                      </div>
+                    </Button>
+                </div>
+
+
                 {/* Group Details */}
                 <Button
                     icon={<QrCode />}
