@@ -13,7 +13,7 @@ try {
         exit();
     }
 
-    $stmt = $conn->prepare('INSERT INTO users (username, password) VALUES (:user, :pass)');
+    $stmt = $conn->prepare('INSERT INTO USERS (username, password) VALUES (:user, :pass)');
 
     $stmt->execute([
         'user' => $data['username'],

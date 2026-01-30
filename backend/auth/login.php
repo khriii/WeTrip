@@ -13,7 +13,7 @@ try {
         exit();
     }
 
-    $stmt = $conn->prepare('SELECT id, username, password FROM users WHERE username = :user');
+    $stmt = $conn->prepare('SELECT id, username, password FROM USERS WHERE username = :user');
     $stmt->execute(['user' => $data['username']]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

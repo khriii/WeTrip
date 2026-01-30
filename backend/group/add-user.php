@@ -30,7 +30,7 @@ try {
 
     // Prepara la query per ottenere l'ID dell'utente tramite username
     $stmt = $conn->prepare(
-        "SELECT id FROM users WHERE username = :username LIMIT 1"
+        "SELECT id FROM USERS WHERE username = :username LIMIT 1"
     );
 
     // Esegue la query con binding del parametro
@@ -48,7 +48,7 @@ try {
 
     // Prepara l'inserimento dell'utente nel gruppo con un ruolo specifico
     $stmt = $conn->prepare(
-        'INSERT INTO users_groups (id_user, id_group, role) 
+        'INSERT INTO USERS_GROUPS (id_user, id_group, role) 
          VALUES (:id_user, :id_group, :role)'
     );
 

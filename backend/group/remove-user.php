@@ -26,7 +26,7 @@ try {
 
     // Recupera l'id dell'utente da rimuovere
     $stmt = $conn->prepare(
-        "SELECT id FROM users WHERE username = :username LIMIT 1"
+        "SELECT id FROM USERS WHERE username = :username LIMIT 1"
     );
     $stmt->execute([
         'username' => $data['username']
@@ -42,7 +42,7 @@ try {
     // Recupera il ruolo dell'utente nel gruppo
     $stmt = $conn->prepare(
         "SELECT role 
-         FROM users_groups 
+         FROM USERS_GROUPS 
          WHERE id_user = :id_user 
            AND id_group = :id_group
          LIMIT 1"
@@ -67,7 +67,7 @@ try {
 
     // Rimuove l'utente dal gruppo
     $stmt = $conn->prepare(
-        "DELETE FROM users_groups 
+        "DELETE FROM USERS_GROUPS 
          WHERE id_user = :id_user 
            AND id_group = :id_group"
     );

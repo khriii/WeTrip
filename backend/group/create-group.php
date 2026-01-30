@@ -16,7 +16,7 @@ try {
     $conn->beginTransaction();
 
     // Inserisce un nuovo gruppo nella tabella `groups`
-    $stmt = $conn->prepare('INSERT INTO groups (name) VALUES (:name)');
+    $stmt = $conn->prepare('INSERT INTO GROUPS (name) VALUES (:name)');
     $stmt->execute([
         'name' => $data['name']
     ]);
@@ -30,7 +30,7 @@ try {
     }
 
     // Recupera l'utente creatore del gruppo tramite username
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = :username");
+    $stmt = $conn->prepare("SELECT id FROM USERS WHERE username = :username");
     $stmt->execute([
         "username" => $data["username"]
     ]);
@@ -45,7 +45,7 @@ try {
 
     // Inserisce l'utente nel gruppo con il ruolo specificato
     $stmt = $conn->prepare(
-        'INSERT INTO users_groups (id_user, id_group, role) 
+        'INSERT INTO USERS_GROUPS (id_user, id_group, role) 
          VALUES (:id_user, :id_group, :role)'
     );
 
