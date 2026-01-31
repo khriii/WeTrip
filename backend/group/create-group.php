@@ -1,9 +1,15 @@
 <?php
+// Previene output di file inclusi
+ob_start();
+
 // Controlla che l'utente sia autenticato
 require_once "../auth/check.php";
 
 // Include la connessione al database (PDO)
 require_once '../database.php';
+
+// Pulisce il buffer cosi che i messaggi dei file inclusi non vengano inviati
+ob_end_clean();
 
 try {
     // Legge il body della richiesta HTTP (JSON)
@@ -18,7 +24,7 @@ try {
     // Inserisce un nuovo gruppo nella tabella `groups`
     $stmt = $conn->prepare('INSERT INTO GROUPS (name) VALUES (:name)');
     $stmt->execute([
-        'name' => $data['name']
+        'name' => $data['groupName']
     ]);
 
     // Recupera l'ID del gruppo appena creato
@@ -32,7 +38,7 @@ try {
     // Recupera l'utente creatore del gruppo tramite username
     $stmt = $conn->prepare("SELECT id FROM USERS WHERE username = :username");
     $stmt->execute([
-        "username" => $data["username"]
+        "username" => $data["creatorUsername"]
     ]);
 
     // Ottiene i dati dell'utente
@@ -61,7 +67,7 @@ try {
     // Risposta di successo con ID del gruppo creato
     echo json_encode([
         "status" => "success",
-        "id_group" => $group_id
+        "id_group" => $groupId
     ]);
 
 } catch (Exception $e) {

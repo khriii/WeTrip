@@ -21,7 +21,7 @@ const Footer = () => {
 
           </div>
 
-          <div className="pl-10 flex w-full justify-evenly gap-10">
+          <div className="pl-10 flex text-white w-full justify-evenly gap-10">
             <div>
               <h1 className="text-3xl font-bold">Navigazione</h1>
               <ul className="text-gray-400 text-md font-medium mt-4">

@@ -5,6 +5,10 @@ import { useState } from "react";
 import Button from "./Button";
 import { UsersRound } from "lucide-react";
 import IconWithBackground from "./IconWithBackground";
+import { create as apiCreateGroup } from "../api/group";
+import { checkAuth as apiCheckAuth } from "../api/auth";
+import { useNavigate } from 'react-router-dom';
+
 
 interface CreateGroupModalProps {
   onClose: () => void;
@@ -16,6 +20,24 @@ const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
   className,
 }) => {
   const [groupName, setGroupName] = useState("");
+  const navigate = useNavigate();
+
+
+  // Method to handle the creation of the group
+  // Accepts = groupname : string, creatorUsername : string
+  // Returns = number | null
+  const handleCreateGroup = async (groupName: string, creatorUsername: string): Promise<number | null> => {
+    const groupId = await apiCreateGroup(groupName, creatorUsername);
+
+    if (groupId == null) {
+      // TODO: Message error
+      return null;
+    }
+
+    return groupId;
+  }
+
+
 
   return (
     <Modal className={className} onClose={onClose}>
@@ -37,7 +59,19 @@ const CreateGroupModal: React.FC<CreateGroupModalProps> = ({
         <Button
           variant="primary"
           className="w-full mt-6"
-          handleClick={() => console.log("Create group")}
+          handleClick={async () => {
+            const creatorUser = await apiCheckAuth();
+
+            if (creatorUser == null) {
+              return;
+            }
+
+            const creatorUsername = creatorUser.username;
+
+            const groupId = await handleCreateGroup(groupName, creatorUsername);
+
+            navigate(`/group-dashboard/${groupId}`)
+          }}
         >
           Crea Gruppo
         </Button>
