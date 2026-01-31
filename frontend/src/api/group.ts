@@ -16,3 +16,20 @@ export const create = async (groupName: string, creatorUsername: string): Promis
     return null;
   }
 }
+
+
+export const getGroupName = async (groupId: number): Promise<string | null> => {
+  try {
+    const response = await api.post('group/get-group-name.php', { groupId });
+    const data = response.data;
+
+    if (data.status === "success") {
+      console.log(`Name of the group with id ${groupId} is "${data.groupName}"`);
+      return data.groupName;
+    }
+
+    return null;
+  } catch (error) {
+    return null;
+  }
+}

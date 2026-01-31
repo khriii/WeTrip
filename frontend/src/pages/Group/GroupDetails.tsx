@@ -2,22 +2,40 @@ import { UserRound, UsersRound } from "lucide-react";
 import Card from "../../components/Card";
 import Navbar from "../../components/Navbar";
 import { useParams, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getGroupName } from '../../api/group';
 
-interface GroupState {
-  groupName: string;
-  groupDescription: string;
-  groupMembers: string[];
-}
 
 const GroupDetails: React.FC = () => {
   const { groupId } = useParams();
-  const { state } = useLocation() as { state: GroupState };
 
-  const {
-    groupName = "Default Group",
-    groupDescription = "This is a Default Description.",
-    groupMembers = [],
-  } = state || {};
+  const [groupName, setGroupName] = useState("");
+  const [groupDescription, setGroupDescription] = useState("");
+  const [groupMembers, setGroupMembers] = useState([]);
+
+
+  // At the loading of the page
+  useEffect(() => {
+    const fetchGroupName = async () => {
+
+      if (!groupId || isNaN(Number(groupId))) {
+        console.error("Invalid Group ID");
+        return;
+      }
+
+      const numGroupId = Number(groupId);
+
+      const response = await getGroupName(numGroupId);
+
+      if (response == null) {
+        return null;
+      }
+
+      setGroupName(response);
+    }
+
+    fetchGroupName();
+  }, [groupId])
 
   return (
     <div className="relative flex justify-center w-full min-h-screen overflow-x-hidden bg-slate-950">
