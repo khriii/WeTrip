@@ -1,5 +1,6 @@
 <?php
 // verifica che l'utente sia autenticato
+$suppress_auth_output = true;
 require_once "../auth/check.php";
 
 // connessione al database
@@ -20,12 +21,6 @@ try {
         throw new Exception("City name missing");
     }
 
-    if (isset($data['price'])) {
-        $price = $data['price'];
-    } else {
-        throw new Exception("Price missing");
-    }
-
     if (isset($data['id_group'])) {
         $groupId = $data['id_group'];
     } else {
@@ -34,11 +29,10 @@ try {
 
     // inserisce la città nella tabella CITIES
     $stmt = $conn->prepare(
-        "INSERT INTO CITIES (name, price, id_group) VALUES (:name, :price, :id_group)"
+        "INSERT INTO CITIES (name, id_group) VALUES (:name, :id_group)"
     );
     $stmt->execute([
         'name' => $cityName,
-        'price' => $price,
         'id_group' => $groupId
     ]);
 

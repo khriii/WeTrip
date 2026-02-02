@@ -1,5 +1,6 @@
 <?php
 // verifica che l'utente sia autenticato
+$suppress_auth_output = true;
 require_once "../auth/check.php";
 
 // connessione al database

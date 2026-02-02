@@ -5,19 +5,37 @@ import Modal from "../Modal";
 import { useState } from "react";
 import Button from "../Button";
 import Input from "../Input";
+import { createStop } from "../../api/stop";
 
 interface Props {
   onClose: () => void;
   className?: string;
+  onConfirm: (name: string, description: string, price: number) => void;
+  selectedCityId: number | null;
 }
 
 const CreateStopModal: React.FC<Props> = ({
   onClose,
   className,
+  onConfirm,
+  selectedCityId,
 }) => {
   const [stopName, setStopName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
+
+  const handleCreateStop = async () => {
+    if (!selectedCityId) {
+      console.error("No city selected");
+      return;
+    }
+    const stopId = await createStop(stopName, description, price, selectedCityId);
+
+    if (stopId != null) {
+      onConfirm(stopName, description, price);
+      onClose();
+    }
+  };
 
   return (
     <Modal className={className} onClose={onClose}>
@@ -36,14 +54,14 @@ const CreateStopModal: React.FC<Props> = ({
           onChange={(e) => setStopName(e)}
         />
 
-         <Input
+        <Input
           label="Descrizione"
           placeholder="Il più grande anfiteatro del mondo."
           className="w-full mt-7 text-left"
           onChange={(e) => setDescription(e)}
         />
 
-          <Input
+        <Input
           label="Prezzo Stimato"
           placeholder="25"
           type="number"
@@ -54,7 +72,7 @@ const CreateStopModal: React.FC<Props> = ({
         <Button
           variant="primary"
           className="w-full mt-6"
-          handleClick={() => console.log("Create stop")}
+          handleClick={() => handleCreateStop()}
         >
           Crea Tappa
         </Button>
@@ -64,4 +82,3 @@ const CreateStopModal: React.FC<Props> = ({
 };
 
 export default CreateStopModal;
-

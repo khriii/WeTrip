@@ -21,4 +21,6 @@ if (isset($_SESSION['user_id'])) {
   ];
 }
 
-echo json_encode($response);
+if (!isset($suppress_auth_output) || !$suppress_auth_output) {
+    echo json_encode($response);
+}

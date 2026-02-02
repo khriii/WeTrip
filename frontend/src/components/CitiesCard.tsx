@@ -6,11 +6,13 @@ import { Plus } from "lucide-react";
 interface CityBarProps {
   title?: string;
   cities: ReactElement<typeof CityCard>[];
+  onAddCity?: () => void;
 }
 
 const CityBar: React.FC<CityBarProps> = ({
   title = "Cities",
   cities,
+  onAddCity,
 }) => {
   return (
     <Card>
@@ -25,10 +27,10 @@ const CityBar: React.FC<CityBarProps> = ({
 
 
           {/* Add City Button */}
-          <button 
-          className="rounded-full justify-center font-semibold px-6 py-3 transition-all duration-300 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-gradient-to-r from-green-500 to-green-700 hover:from-green-400 hover:to-green-500 text-white hover:shadow-lg hover:shadow-green-500/25"
-          
-          onClick={() => {}}
+          <button
+            className="rounded-full justify-center font-semibold px-6 py-3 transition-all duration-300 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer bg-gradient-to-r from-green-500 to-green-700 hover:from-green-400 hover:to-green-500 text-white hover:shadow-lg hover:shadow-green-500/25"
+
+            onClick={onAddCity}
           >
             <div className="flex flex-row gap-3">
               <Plus className="ml-[-10px]" />
