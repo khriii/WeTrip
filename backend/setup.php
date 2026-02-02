@@ -18,26 +18,39 @@ try {
         `id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
         `username` VARCHAR(64) NOT NULL UNIQUE,
         `password` VARCHAR(64) NOT NULL,
-        PRIMARY KEY(`id`)
+        PRIMARY KEY (`id`)
     );
 
     CREATE TABLE IF NOT EXISTS `GROUPS` (
         `id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
         `name` VARCHAR(64) NOT NULL,
-        PRIMARY KEY(`id`)
+        PRIMARY KEY (`id`)
     );
 
     CREATE TABLE IF NOT EXISTS `USERS_GROUPS` (
         `id_user` INTEGER NOT NULL,
         `id_group` INTEGER NOT NULL,
-        `role` VARCHAR(64) NOT NULL
+        `role` VARCHAR(64) NOT NULL,
+        PRIMARY KEY (`id_user`, `id_group`),
+        FOREIGN KEY (`id_user`)
+            REFERENCES `USERS`(`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION,
+        FOREIGN KEY (`id_group`)
+            REFERENCES `GROUPS`(`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
     );
 
     CREATE TABLE IF NOT EXISTS `CITIES` (
         `id` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
         `name` VARCHAR(64) NOT NULL,
         `id_group` INTEGER NOT NULL,
-        PRIMARY KEY(`id`)
+        PRIMARY KEY (`id`),
+        FOREIGN KEY (`id_group`)
+            REFERENCES `GROUPS`(`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
     );
 
     CREATE TABLE IF NOT EXISTS `STOPS` (
@@ -46,21 +59,12 @@ try {
         `name` VARCHAR(64) NOT NULL,
         `description` VARCHAR(255) NOT NULL,
         `price` FLOAT NOT NULL,
-        PRIMARY KEY(`id`)
+        PRIMARY KEY (`id`),
+        FOREIGN KEY (`id_city`)
+            REFERENCES `CITIES`(`id`)
+            ON DELETE CASCADE
+            ON UPDATE NO ACTION
     );
-
-    ALTER TABLE `USERS_GROUPS`
-    ADD FOREIGN KEY(`id_user`) REFERENCES `USERS`(`id`)
-    ON UPDATE NO ACTION ON DELETE NO ACTION;
-    ALTER TABLE `USERS_GROUPS`
-    ADD FOREIGN KEY(`id_group`) REFERENCES `GROUPS`(`id`)
-    ON UPDATE NO ACTION ON DELETE NO ACTION;
-    ALTER TABLE `CITIES`
-    ADD FOREIGN KEY(`id_group`) REFERENCES `GROUPS`(`id`)
-    ON UPDATE NO ACTION ON DELETE NO ACTION;
-    ALTER TABLE `STOPS`
-    ADD FOREIGN KEY(`id_city`) REFERENCES `CITIES`(`id`)
-    ON UPDATE NO ACTION ON DELETE NO ACTION;
     ";
 
     $conn->exec($sql);
