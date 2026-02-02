@@ -3,25 +3,25 @@ add-user (username)
 create-group (name, creator_username)
 remove-user (username, id_group)
 remove-group (id)
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 rename-group (id, new_name)
+get-group-name (group_id)
+get-all-groups-from-user (id_user)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 get-id-group (id)
 promote-user (id_user, id_group) (anche più di uno)
 demote-user (id_user, id_group)
 get-all-users-from-group (id_group) (ritornare tutta la tabella users_group)
-get-all-groups-from-user (id_group)
 
 
 CITY
 add-city (name, price, id_group)
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 remove-city (id)
-get-id (name, id_group)
-change-price (id, id_group, new_price)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 get-all-city-from-group (id_group)
 
 
 STOPS
-add-stop (name, price, description, id_group, id_city) TODO: return stop_id
-remove-stop (id)
+add-stop (name, price, description, id_city) TODO: return stop_id
 get-all-stops-from-city (id_city)
+remove-stop (id)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
