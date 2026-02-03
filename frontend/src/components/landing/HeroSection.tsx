@@ -1,7 +1,7 @@
-import Button from "./Button";
+import Button from "../ui/Button";
 import { ChevronDown, UsersRound } from "lucide-react";
 import { useState } from "react";
-import CreateGroupModal from "./CreateGroupModal";
+import CreateGroupModal from "../modals/CreateGroupModal";
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

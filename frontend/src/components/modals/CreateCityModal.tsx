@@ -1,10 +1,10 @@
 import { MapPinned } from "lucide-react";
-import Column from "../Column";
-import IconWithBackground from "../IconWithBackground";
-import Modal from "../Modal";
+import Column from "../layout/Column";
+import IconWithBackground from "../ui/IconWithBackground";
+import Modal from "../ui/Modal";
 import { useState } from "react";
-import Button from "../Button";
-import Input from "../Input";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
 import { createCity } from "../../api/cities";
 import { useParams } from "react-router-dom";
 

@@ -1,11 +1,11 @@
-import { useAuth } from '../context/AuthContext';
-import Button from "./Button";
+import { useAuth } from '../../context/AuthContext';
+import Button from "../ui/Button";
 import { LogOut, QrCode, UsersRound, User as UserIcon } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import LogoTitle from "./LogoTitle";
+import LogoTitle from "../ui/LogoTitle";
 import { useEffect, useState } from "react";
-import { getGroupName, getGroupMembers } from '../api/group'; 
-import { checkAuth, type User } from '../api/auth';
+import { getGroupName, getGroupMembers } from '../../api/group'; 
+import { checkAuth, type User } from '../../api/auth';
 
 const Navbar = () => {
     const { groupId } = useParams();

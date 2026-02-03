@@ -1,10 +1,10 @@
 import { UsersRound, Crown } from "lucide-react";
-import Card from "../../components/Card";
-import Navbar from "../../components/Navbar";
+import Card from "../../components/ui/Card";
+import Navbar from "../../components/layout/Navbar";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getGroupName, getGroupMembers, type GroupMember } from '../../api/group';
-import Badge from "../../components/Badge";
+import Badge from "../../components/ui/Badge";
 
 const GroupDetails: React.FC = () => {
 	const { groupId } = useParams();

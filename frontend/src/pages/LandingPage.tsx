@@ -1,9 +1,9 @@
 import { MapPin, Plane, Users } from "lucide-react";
-import HeroSection from "../components/HeroSection";
-import Navbar from "../components/Navbar";
-import HowItWorks from "../components/HowItWorksSection";
-import GetStartedBanner from "../components/GetStartedBanner";
-import Footer from "../components/Footer";
+import HeroSection from "../components/landing/HeroSection";
+import Navbar from "../components/layout/Navbar";
+import HowItWorks from "../components/landing/HowItWorksSection";
+import GetStartedBanner from "../components/landing/GetStartedBanner";
+import Footer from "../components/layout/Footer";
 
 const LandingPage = () => {
   return (

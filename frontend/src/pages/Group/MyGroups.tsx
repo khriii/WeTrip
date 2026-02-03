@@ -1,12 +1,12 @@
 import { Crown, ArrowRight, Plane } from "lucide-react";
-import Card from "../../components/Card";
-import Navbar from "../../components/Navbar";
+import Card from "../../components/ui/Card";
+import Navbar from "../../components/layout/Navbar";
 import { useEffect, useState } from "react";
 import { getUserGroups, type UserGroup } from '../../api/group';
 import { checkAuth } from "../../api/auth";
-import Badge from "../../components/Badge";
+import Badge from "../../components/ui/Badge";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button";
+import Button from "../../components/ui/Button";
 
 const MyGroups: React.FC = () => {
     const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import LogoTitle from "./LogoTitle";
+import LogoTitle from "../ui/LogoTitle";
 import Row from "./Row";
 import { Github, CircleQuestionMark } from "lucide-react";
 

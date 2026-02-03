@@ -1,6 +1,6 @@
 import { Plane, UsersRound, Map, Calendar1 } from "lucide-react";
-import Badge from "./Badge";
-import StepCard from "./StepCard";
+import Badge from "../ui/Badge";
+import StepCard from "../ui/StepCard";
 
 
 interface HowItWorksProps {

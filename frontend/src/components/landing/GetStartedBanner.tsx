@@ -1,6 +1,6 @@
-import Button from "./Button";
-import Card from "./Card";
-import Column from "./Column";
+import Button from "../ui/Button";
+import Card from "../ui/Card";
+import Column from "../layout/Column";
 
 const GetStartedBanner = () => {
   return (

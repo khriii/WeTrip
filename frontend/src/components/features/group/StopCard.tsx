@@ -1,6 +1,6 @@
-import Badge from "./Badge";
-import Button from "./Button";
-import Card from "./Card";
+import Badge from "../../ui/Badge";
+import Button from "../../ui/Button";
+import Card from "../../ui/Card";
 import { MapPin } from "lucide-react";
 
 interface StopCardProps {

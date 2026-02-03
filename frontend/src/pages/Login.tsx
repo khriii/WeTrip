@@ -1,10 +1,10 @@
 import { useState } from "react";
-import CredentialsCard, { type CredentialsData } from "../components/CredentialsCard";
+import CredentialsCard, { type CredentialsData } from "../components/features/auth/CredentialsCard";
 import { login as apiLogin } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import Row from "../components/Row";
-import Column from "../components/Column";
+import Row from "../components/layout/Row";
+import Column from "../components/layout/Column";
 
 const Login = () => {
   const { login } = useAuth();

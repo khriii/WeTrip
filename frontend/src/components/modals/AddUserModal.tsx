@@ -1,11 +1,11 @@
 import { Trash2, UserRoundPlus, UserPlus } from "lucide-react";
-import Column from "../Column";
-import IconWithBackground from "../IconWithBackground";
-import Modal from "../Modal";
+import Column from "../layout/Column";
+import IconWithBackground from "../ui/IconWithBackground";
+import Modal from "../ui/Modal";
 import { useState } from "react";
-import Button from "../Button"; // Using your specific Button component
-import Input from "../Input";
-import Row from "../Row";
+import Button from "../ui/Button"; // Using your specific Button component
+import Input from "../ui/Input";
+import Row from "../layout/Row";
 import { findUsers, type UserSearchResult } from "../../api/users";
 import { addUser } from "../../api/group";
 

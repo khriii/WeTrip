@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
 import CityCard from "./City";
-import Card from "./Card";
+import Card from "../../ui/Card";
 import { Plus } from "lucide-react";
-import Button from "./Button";
+import Button from "../../ui/Button";
 
 interface CityBarProps {
   title?: string;

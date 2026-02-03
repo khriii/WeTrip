@@ -1,9 +1,9 @@
 import { useState } from "react";
-import CredentialsCard, { type CredentialsData } from "../components/CredentialsCard";
+import CredentialsCard, { type CredentialsData } from "../components/features/auth/CredentialsCard";
 import { register } from "../api/auth";
 import { useNavigate } from "react-router-dom";
-import Row from "../components/Row";
-import Column from "../components/Column";
+import Row from "../components/layout/Row";
+import Column from "../components/layout/Column";
 
 const Register = () => {
   const navigate = useNavigate();

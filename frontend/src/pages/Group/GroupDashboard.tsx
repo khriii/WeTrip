@@ -1,18 +1,18 @@
-import Navbar from "../../components/Navbar";
-import StopCard from "../../components/StopCard";
-import StopContainer from "../../components/StopsContainer";
-import CitiesCard from "../../components/CitiesCard";
-import City from "../../components/City";
+import Navbar from "../../components/layout/Navbar";
+import StopCard from "../../components/features/group/StopCard";
+import StopContainer from "../../components/features/group/StopsContainer";
+import CitiesCard from "../../components/features/group/CitiesCard";
+import City from "../../components/features/group/City";
 import { Plus, UserRoundPlus } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import CreateStopModal from "../../components/Modals/CreateStopModal";
-import CreateCityModal from "../../components/Modals/CreateCityModal";
+import CreateStopModal from "../../components/modals/CreateStopModal";
+import CreateCityModal from "../../components/modals/CreateCityModal";
 import { useParams, useNavigate } from "react-router-dom";
 import { getGroupCities, type CityData } from "../../api/cities";
 import { getCityStops, type StopData } from "../../api/stop";
-import Button from "../../components/Button";
-import AddUserModal from "../../components/Modals/AddUserModal";
-import Footer from "../../components/Footer";
+import Button from "../../components/ui/Button";
+import AddUserModal from "../../components/modals/AddUserModal";
+import Footer from "../../components/layout/Footer";
 import { checkMembership } from "../../api/group";
 
 interface StopItem {

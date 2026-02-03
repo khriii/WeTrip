@@ -1,12 +1,12 @@
-import Modal from "./Modal";
-import Column from "./Column";
-import Input from "./Input";
+import Modal from "../ui/Modal";
+import Column from "../layout/Column";
+import Input from "../ui/Input";
 import { useState } from "react";
-import Button from "./Button";
+import Button from "../ui/Button";
 import { UsersRound } from "lucide-react";
-import IconWithBackground from "./IconWithBackground";
-import { create as apiCreateGroup } from "../api/group";
-import { checkAuth as apiCheckAuth } from "../api/auth";
+import IconWithBackground from "../ui/IconWithBackground";
+import { create as apiCreateGroup } from "../../api/group";
+import { checkAuth as apiCheckAuth } from "../../api/auth";
 import { useNavigate } from 'react-router-dom';
 
 
