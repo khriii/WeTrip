@@ -1,7 +1,5 @@
 import Button from "./Button";
-import { ChevronDown, Search, UsersRound } from "lucide-react";
-import Input from "./Input";
-import Row from "./Row";
+import { ChevronDown, UsersRound } from "lucide-react";
 import { useState } from "react";
 import CreateGroupModal from "./CreateGroupModal";
 

@@ -7,17 +7,13 @@ import { Plus, UserRoundPlus } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import CreateStopModal from "../../components/Modals/CreateStopModal";
 import CreateCityModal from "../../components/Modals/CreateCityModal";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getGroupCities, type CityData } from "../../api/cities";
 import { getCityStops, type StopData } from "../../api/stop";
 import Button from "../../components/Button";
 import AddUserModal from "../../components/Modals/AddUserModal";
 import Footer from "../../components/Footer";
 import { checkMembership } from "../../api/group";
-
-interface GroupState {
-    groupName: string;
-}
 
 interface StopItem {
     title: string;
@@ -28,7 +24,6 @@ interface StopItem {
 
 const GroupDashboard = () => {
     const { groupId } = useParams();
-    const { state } = useLocation() as { state: GroupState };
     const navigate = useNavigate();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
