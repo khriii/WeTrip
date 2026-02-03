@@ -1,106 +1,112 @@
 import { useAuth } from '../context/AuthContext';
 import Button from "./Button";
-import { LogOut, QrCode, UserRoundPlus } from "lucide-react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { LogOut, QrCode, UsersRound, User as UserIcon } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 import LogoTitle from "./LogoTitle";
-import { useState } from "react";
-import ModalPortal from './Modals/ModalPortal';
-import AddUserModal from './Modals/AddUserModal';
+import { useEffect, useState } from "react";
+import { getGroupName, getGroupMembers } from '../api/group'; 
+import { checkAuth, type User } from '../api/auth';
 
 const Navbar = () => {
-    {/* TODO: Fix the group id and isInGroup */ }
-    {/* I put these 2 useStates here so I can TEMPORARILY set the group */ }
-    {/* It Should be managed better in the future */ }
-    const [isInGroup, setIsInGroup] = useState(true);
-    const [idGroup, setIdGroup] = useState("1");
-
-
-    const [isModalAddOpen, setIsModalAddOpen] = useState(false);
+    const { groupId } = useParams();
+    const [groupName, setGroupName] = useState("");
+    
+    const [memberCount, setMemberCount] = useState<number>(0); 
+    
+    const [user, setUser] = useState<User | null>(null);
     const { logout, isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const id = Number(groupId);
+            if (!id || isNaN(id)) return;
+
+            const [name, members] = await Promise.all([
+                getGroupName(id),
+                getGroupMembers(id)
+            ]);
+
+            if (name) setGroupName(name);
+            if (members) setMemberCount(members.length);
+        };
+
+        fetchData();
+    }, [groupId]);
+
+    // Fetch dati utente
+    useEffect(() => {
+        const fetchUser = async () => {
+            if (isAuthenticated) {
+                const userData = await checkAuth();
+                setUser(userData);
+            } else {
+                setUser(null);
+            }
+        };
+        fetchUser();
+    }, [isAuthenticated]);
+
     const handleLogout = async () => {
         await logout();
+        setUser(null);
     };
 
     return (
         <div className="navbar fixed top-0 w-full z-50 backdrop-blur-md bg-gradient-to-b from-slate-950 to-transparent border-b border-white/10">
             <div className="flex-1">
-                <Button variant="ghost">
+                <Button variant="ghost" handleClick={() => navigate('/landing-page')}>
                     <LogoTitle />
                 </Button>
             </div>
 
+            <div className='absolute left-1/2 -translate-x-1/2 flex justify-center'>
+                {groupName && (
+                    <button className='flex flex-col justify-center items-center text-white text-2xl font-bold hover:cursor-pointer px-10 hover:bg-white/10 rounded-full py-2 transition-all duration-300 border-2 border-gray-500/50'>
+                        <span>{groupName}</span>
+                        {/* Qui mostriamo il numero dinamico */}
+                        <span className="text-xs inline-flex items-center gap-1">
+                            <UsersRound size={20} /> {memberCount}
+                        </span>
+                    </button>
+                )}
+            </div>
+
             <div className="flex gap-4 items-center px-2">
-
-
-                <div className="flex justify-center items-center">
-                    {/* TODO: Change this text */}
-                    <Button variant="secondary"
-                      handleClick={() => {
-                        navigate(`/group-dashboard/${idGroup}`, {
-                          state: {
-                            groupName: 'Study Group',
-                          },
-              })}}
-                    >
-                      <div className="flex flex-col items-center justify-center">
-            
-                        <span className="text-md">NomeGruppo</span>
-                        <span className="text-xs">Membri: 10</span>
-                          
-                      </div>
-                    </Button>
-                </div>
-
-
                 {/* Group Details */}
-                <Button
-                    icon={<QrCode />}
-                    variant="ghost"
-                    handleClick={() =>
-                        navigate(`/group-details/${idGroup}`, {
-                            state: {
-                                groupName: 'Study Group',
-                                groupDescription: 'Group for telecom revision',
-                                groupMembers: ['Christian', 'Edoardo'],
-                            },
-                        })
-                    }
-                >
-                    Group Details
-                </Button>
-
-
-                <Button
-                    handleClick={() => {
-                        setIsModalAddOpen(true);
-                    }}
-                >
-                    <UserRoundPlus strokeWidth={3} />
-                </Button>
-
-                {isModalAddOpen && (
-                    <ModalPortal>
-                        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                            <AddUserModal
-                                className={`w-md z-60 transition-transform duration-300 ease-out ${isModalAddOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"}`}
-                                onClose={() => setIsModalAddOpen(false)}
-                            />
-                        </div>
-                    </ModalPortal>
+                {groupName && (
+                    <Button
+                        icon={<QrCode />}
+                        variant="outline"
+                        handleClick={() =>
+                            navigate(`/group-details/${groupId}`)
+                        }
+                    >
+                        Dettagli Gruppo
+                    </Button>
                 )}
 
-
-
-
                 {isAuthenticated ? (
-                    <Button
-                        variant="red"
-                        handleClick={handleLogout}
-                        icon={<LogOut size={20} strokeWidth={2.5} />}
-                    />
+                    <div className="flex items-center gap-3">
+                        
+                        {/* Username */}
+                        {user && (
+                            <Button
+                                variant='outline'
+                                className='h-13'
+                                handleClick={() => navigate('/my-groups')}
+                            >
+                                <UserIcon size={16} />
+                                <span className="font-medium text-sm">{user.username}</span>
+                            </Button>
+                        )}
 
+                        <Button
+                            variant="red"
+                            handleClick={handleLogout}
+                            icon={<LogOut size={20} strokeWidth={2.5} />}
+                        />
+                    </div>
                 ) : (
                     <div className="flex items-center gap-4">
                         <Button variant="secondary" handleClick={() => navigate("/login")}>
@@ -112,7 +118,7 @@ const Navbar = () => {
                     </div>
                 )}
             </div>
-        </div >
+        </div>
     );
 };
 

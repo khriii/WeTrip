@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ButtonProps {
   children?: React.ReactNode;
   roundness?: number;
@@ -8,6 +10,7 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "ghost" | "invisible" | "red" | "white";
   justify?: "start" | "center" | "end" | "between";
   handleClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,6 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   justify = "center",
   handleClick,
+  disabled = false,
 }) => {
   const baseLayout =
     "font-semibold px-6 py-3 transition-all duration-300 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer";
@@ -51,6 +55,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={handleClick}
+      disabled={disabled}
       className={`${baseLayout} ${justifyClass} ${variants[variant]} ${className}`}
       style={{
         borderRadius: `${roundness}px`,

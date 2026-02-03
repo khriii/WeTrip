@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoTitle from "./LogoTitle";
 import Row from "./Row";
 import { Github, CircleQuestionMark } from "lucide-react";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+
   return (
     <footer className="w-full px-4 md:px-12 lg:px-24 xl:px-32 border-t border-white/10 mt-20">
       <div className="w-full px-8 py-10">
@@ -29,6 +32,8 @@ const Footer = () => {
                   const howItWorksSection = document.getElementById('how-it-works-section');
                   if (howItWorksSection) {
                     howItWorksSection.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    navigate("/landing-page");
                   }
                 }}>
                   <span className="inline-flex gap-2 items-center">

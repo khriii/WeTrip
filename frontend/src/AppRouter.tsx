@@ -7,6 +7,8 @@ import CreateJoinGroup from './pages/Group/CreateJoinGroup'
 import GroupDashboard from './pages/Group/GroupDashboard';
 import LandingPage from './pages/LandingPage';
 import GroupDetails from './pages/Group/GroupDetails';
+import ErrorPage from './pages/ErrorPage';
+import MyGroups from './pages/Group/MyGroups';
 
 const AppRouter = () => {
   const { isAuthenticated, isLoading } = useAuth();
@@ -54,6 +56,16 @@ const AppRouter = () => {
       <Route
         path='/landing-page'
         element={<LandingPage />}
+      />
+
+      <Route
+        path='/my-groups'
+        element={<MyGroups />}
+      />
+
+      <Route
+        path='/error'
+        element={<ErrorPage />}
       />
     </Routes>
   );
