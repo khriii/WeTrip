@@ -1,4 +1,5 @@
 <?php
+session_save_path(sys_get_temp_dir());
 // set the default cors
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Credentials: true");
